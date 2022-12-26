@@ -14,67 +14,67 @@ const Signup = () => {
   const [password, setPassword] = useState("");
 
   const [cpassword, setCPassword] = useState("");
- // console.log(email, password, cpassword);
+  // console.log(email, password, cpassword);
 
   const [isMatch, setIsMatch] = useState(false);
   const handleCheck = () => {
-    if (password === cpassword) {
-      setIsMatch(true);
+    if (password.length > 0 && cpassword.length > 0) {
+      if (password === cpassword) {
+        setIsMatch(true);
+      } else {
+        alert("Password is not same");
+      }
     } else {
-      alert("Password is not same");
+      alert("Please fill the required field");
     }
   };
-
 
   return (
     <div className="flex ">
       <Welcome />
-      <div className=" flex items-center md:mx-32 justify-center  space-y-4">
+      <div className=" flex items-center sm:px-0 px-5 mx-auto md:mx-32 justify-center  space-y-4">
         <div>
-         <Heading
-         subheading="SIGN UP"
-         />
+          <Heading subheading="SIGN UP" />
 
-        <Inputfields
-        fieldtitle="Email Address"
-        inputype="text"
-        placeholder="Example@rocket.mail"
-        inputvalue={email}
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-        source={Msg}
-        />
-        
-        <Inputfields
-        fieldtitle="Password"
-        inputype="password"
-        placeholder="**********"
-        inputvalue={password}
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-        source={Password}
-        />
- <Inputfields
-        fieldtitle="Confirm Password"
-        inputype="password"
-        placeholder="***********"
-        inputvalue={cpassword}
-        onChange={(e) => {
-          setCPassword(e.target.value);
-        }}
-        source={Password}
-        />
-         
- 
-          <div className="flex font-medium items-center justify-center m-auto"
-          onClick={handleCheck}
+          <Inputfields
+            fieldtitle="Email Address"
+            inputype="text"
+            placeholder="Example@rocket.mail"
+            inputvalue={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            source={Msg}
+          />
+
+          <Inputfields
+            fieldtitle="Password"
+            inputype="password"
+            placeholder="**********"
+            inputvalue={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            source={Password}
+          />
+          <Inputfields
+            fieldtitle="Confirm Password"
+            inputype="password"
+            placeholder="***********"
+            inputvalue={cpassword}
+            onChange={(e) => {
+              setCPassword(e.target.value);
+            }}
+            source={Password}
+          />
+
+          <div
+            className="flex font-medium items-center  justify-center"
+            onClick={handleCheck}
           >
-           
             {isMatch ? (
               <Link to="/signupotp">
-                <Buttons text="Send Confirmation Code" />
+                <Buttons text="Send Confirmation Code " />
               </Link>
             ) : (
               <Buttons text="Send Confirmation Code" />
@@ -98,7 +98,7 @@ const Signup = () => {
             <img src={Rectangle} alt="line" className="w-10  h-[2px]" />
           </div>
           {/* <div className="flex justify-center items-center"> */}
-            <Buttons1 />
+          <Buttons1 />
           {/* </div> */}
         </div>
       </div>

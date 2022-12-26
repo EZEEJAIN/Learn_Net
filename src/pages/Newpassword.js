@@ -15,50 +15,57 @@ const Newpassword = () => {
   const [isMatch, setIsMatch] = useState(false);
   //console.log(newPass, newCPass);
   const handleCheck = () => {
-    if (newPass === newCPass) {
-      setIsMatch(true);
+    if (newPass.length > 0 && newCPass.length > 0) {
+      if (newPass.length <= 10 && newCPass.length <= 10) {
+        if (newPass === newCPass) {
+          setIsMatch(true);
+        } else {
+          alert("Password is not same");
+        }
+      } else {
+        alert("Length exceed");
+      }
     } else {
-      alert("password is not same");
+      alert("Please fill the required field");
     }
   };
 
   return (
     <div className="flex ">
-        <Welcome />
-        <div className=" flex items-center md:mx-32 justify-center  space-y-4">
+      <Welcome />
+      <div className=" flex items-center sm:px-0 px-5 mx-auto md:mx-32 justify-center  space-y-4">
         <div>
-         <Heading
-         subheading="NEW PASSWORD"/>
-         
-         <Inputfields
-        fieldtitle="New Password"
-        inputype="password"
-        placeholder="*********"
-        inputvalue={newPass}
-        onChange={(e) => {
-          setNewPass(e.target.value);
-        }}
-        source={Password}
-        />
-         
-         <Inputfields
-        fieldtitle="Confirm Password"
-        inputype="password"
-        placeholder="**********"
-        inputvalue={newCPass}
-        onChange={(e) => {
-          setNewCPass(e.target.value);
-        }}
-        source={Password}
-        />
-       
-         
-          <div className="flex font-medium items-center justify-center m-auto" onClick={handleCheck}
+          <Heading subheading="NEW PASSWORD" />
+
+          <Inputfields
+            fieldtitle="New Password"
+            inputype="password"
+            placeholder="*********"
+            inputvalue={newPass}
+            onChange={(e) => {
+              setNewPass(e.target.value);
+            }}
+            source={Password}
+          />
+
+          <Inputfields
+            fieldtitle="Confirm Password"
+            inputype="password"
+            placeholder="**********"
+            inputvalue={newCPass}
+            onChange={(e) => {
+              setNewCPass(e.target.value);
+            }}
+            source={Password}
+          />
+
+          <div
+            className="flex font-medium items-center justify-center m-auto"
+            onClick={handleCheck}
           >
-           
             {isMatch ? (
               <Link to="/">
-                <Buttons text="Confirm" />
+                <Buttons text="Confirm " />
               </Link>
             ) : (
               <Buttons text="Confirm" />
@@ -82,7 +89,7 @@ const Newpassword = () => {
             <img src={Rectangle} alt="line" className="w-10  h-[2px]" />
           </div>
           {/* <div className="flex justify-center items-center"> */}
-            <Buttons1 />
+          <Buttons1 />
           {/* </div> */}
         </div>
       </div>

@@ -12,7 +12,7 @@ const Signupotp = () => {
   return (
     <div className="flex ">
       <Welcome />
-      <div className=" flex items-center md:mx-32 justify-center  space-y-4">
+      <div className=" flex items-center mx-auto md:mx-32 justify-center  space-y-4">
         <div>
          <Heading
          subheading="SIGN UP"/>

@@ -14,7 +14,7 @@ const Forgotcode = () => {
   return (
     <div className="flex ">
     <Welcome />
-    <div className=" flex items-center md:mx-32 justify-center  space-y-4">
+    <div className=" flex items-center sm:px-0 px-5 mx-auto md:mx-32 justify-center  space-y-4">
     <div>
      <Heading
      subheading="FORGOT PASSWORD"/>
@@ -30,7 +30,7 @@ const Forgotcode = () => {
      
       <div className="flex font-medium items-center justify-center m-auto">
         <Link to="/newpass">
-          <Buttons text="Create New Password " />
+          <Buttons text="Create New Password" />
         </Link>
       </div>
       <div className="flex justify-center items-center font-medium text-sm mb-4 ">
