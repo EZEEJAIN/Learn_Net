@@ -10,7 +10,7 @@ const Inputfields = ({fieldtitle,inputype,placeholder,inputvalue,onChange,source
             <input
               type={inputype}
               placeholder={placeholder}
-              className="flex-1 outline-none"
+              className="pr-28 outline-none"
               value={inputvalue}
               onChange={onChange}
             />
