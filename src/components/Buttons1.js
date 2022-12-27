@@ -3,7 +3,7 @@ import Google from "../assests/google.png";
 
 const Buttons1 = () => {
   return (
-    <div className=" space-y-5 ">
+    <div className=" space-y-3 ">
       <div className="flex items-center justify-center space-x-2  ring-1 rounded-2xl py-2 text-[#000000] text-sm font-medium ring-[#151515] ">
         <img src={Google} alt="" />
         <button >

@@ -33,7 +33,7 @@ const Signup = () => {
     <div className="flex ">
       <Welcome />
       <div className=" flex items-center sm:px-0 px-5 mx-auto md:mx-32 justify-center  space-y-4">
-        <div>
+        <div className="sm:mt-5 mt-20  ">
           <Heading subheading="SIGN UP" />
 
           <Inputfields

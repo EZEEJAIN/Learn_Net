@@ -13,7 +13,7 @@ const Forgot = () => {
       <div className="flex ">
         <Welcome />
         <div className=" flex items-center sm:px-0 px-5 mx-auto md:mx-32 justify-center  space-y-4">
-        <div>
+        <div className="sm:mt-28 md:mt-8 mt-32   ">
          <Heading
          subheading="FORGOT PASSWORD"/>
          

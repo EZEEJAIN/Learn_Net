@@ -15,8 +15,8 @@ const Signin = () => {
     <div className="flex ">
       <Welcome />
       {/* <div className=""> */}
-      <div className=" flex mt-10 md:mt-0 items-center mx-auto md:mx-32 justify-center  space-y-4">
-        <div>
+      <div className="flex items-center sm:px-0 px-5 mx-auto md:mx-32 justify-center  space-y-4">
+        <div className="sm:mt-20 mt-24 md:mt-5">
           <Heading
           subheading="SIGN IN"
           />
