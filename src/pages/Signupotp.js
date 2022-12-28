@@ -12,7 +12,7 @@ const Signupotp = () => {
   return (
     <div className="flex ">
       <Welcome />
-      <div className=" flex items-center sm:px-0 px-5 mx-auto md:mx-32 justify-center  space-y-4">
+      <div className=" flex items-center sm:px-0 px-5 mx-auto md:mx-20 justify-center  space-y-4">
         <div className="sm:mt-24 md:mt-10 mt-32">
          <Heading
          subheading="SIGN UP"/>
@@ -26,7 +26,7 @@ const Signupotp = () => {
         />
         
          
-          <div className="flex font-medium items-center justify-center m-auto">
+          <div className="font-medium">
             <Link to="/">
               <Buttons text="Sign up" />
             </Link>

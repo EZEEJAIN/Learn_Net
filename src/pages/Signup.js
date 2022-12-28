@@ -18,7 +18,7 @@ const Signup = () => {
 
   const [isMatch, setIsMatch] = useState(false);
   const handleCheck = () => {
-    if (password.length > 0 && cpassword.length > 0) {
+    if (password.length > 0 && cpassword.length > 0 && email.length > 0) {
       if (password === cpassword) {
         setIsMatch(true);
       } else {

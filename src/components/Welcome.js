@@ -8,7 +8,7 @@ const Welcome = () => {
           src={Boy}
           alt="boy"
           // className="object-cover w-[630px] mt-44 lg:mt-32  md:mt-60 md:mr-20 ml-4 md:ml-7"
-          className="h-[250px] w-[300px] object-contain"
+          className="h-[700px] w-[700px] object-contain"
         />
     </div>
   );
