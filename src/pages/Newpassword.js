@@ -18,7 +18,7 @@ const Newpassword = () => {
   const [isCorrect, setIsCorrect] = useState("");
   const [errors, setErrors] = useState("");
   const cookies = Cookie();
-  const PASSWORD = cookies.get("password");
+  //const PASSWORD = cookies.get("password");
 
   console.log(cookies.get("password"));
   const handleResetPassword = () => {
