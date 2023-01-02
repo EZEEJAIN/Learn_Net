@@ -7,6 +7,8 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Signupotp from "./pages/Signupotp";
 import Loginsuccess from "./pages/Loginsuccess";
+import { ToastContainer } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import Coursedesabout from "./components/Coursedesabout";
 //import Common1 from "./components/Common1";
 
@@ -15,6 +17,7 @@ function App() {
     <div>
       
       <BrowserRouter>
+      
         <Routes>
         <Route path="/" element={<Signin/>}/>
         <Route path="/signup" element={<Signup/>}/>
@@ -25,7 +28,7 @@ function App() {
         <Route path="/loginsuccess" element={<Loginsuccess/>}/>
         </Routes>
       </BrowserRouter>
-     
+      <ToastContainer />
     </div>
   );
 }

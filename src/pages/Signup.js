@@ -4,31 +4,77 @@ import Buttons1 from "../components/Buttons1";
 import Rectangle from "../assests/Rectangle.png";
 import Password from "../assests/password.png";
 import Msg from "../assests/msg.png";
+import Cookie from 'cookie-universal'
 //import Dot from "../assests/dot.png";
 import { Link } from "react-router-dom";
 import Welcome from "../components/Welcome";
 import Heading from "../components/Heading";
 import Inputfields from "../components/Inputfields";
+import { base_url } from "../utils/base_url";
+import axios from "axios";
 const Signup = () => {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [cpassword, setCPassword] = useState("");
-  // console.log(email, password, cpassword);
+  // console.log(email, password, cpassword);'
+  const [isCorrect, setIsCorrect] = useState(false);
+  const [errors, setErrors] = useState("");
+  const cookies = Cookie()
 
-  const [isMatch, setIsMatch] = useState(false);
-  const handleCheck = () => {
+  const handleSignUp = () => {
+    setErrors("");
     if (password.length > 0 && cpassword.length > 0 && email.length > 0) {
       if (password === cpassword) {
-        setIsMatch(true);
+        const requestBody = {
+          email: email,
+          password: password,
+        };
+
+        axios
+          .post(`${base_url}/auth/user/register`, requestBody, {
+            headers: {},
+          })
+          .then(function (response) {
+            console.log("successful RESPONSE ", response.data);
+            if (response?.request?.status === 400) {
+              setIsCorrect(false);
+            } else if (response?.request?.status === 200) {
+              setIsCorrect(true);
+              cookies.set('token',response?.data?.token)
+              cookies.set('otp',response?.data?.otp)
+              cookies.set('password',password)
+            }
+          })
+          .catch(function (error) {
+            console.log("ERROR RESPONSE ", error);
+
+            if (
+              error?.response?.data?.errors?.email ||
+              error?.response?.data?.errors?.password
+            ) {
+              if (error?.response?.data?.errors?.email?.toString()==="user with this email already exists.") {
+                setErrors(error?.response?.data?.errors?.email?.toString());
+              }
+              else if(error?.response?.data?.errors?.email?.toString()==='Enter a valid email address.')
+              {
+                setErrors(error?.response?.data?.errors?.email?.toString()); 
+              }
+              else if (error?.response?.data?.errors?.password) {
+                setErrors("Ensure password has at least 8 characters.");
+              }
+            } 
+          });
       } else {
-        alert("Password is not same");
+        setErrors("Password and Confirm password is not same");
       }
     } else {
-      alert("Please fill the required field");
+      setErrors("Please fill the required field");
     }
   };
 
+  
+  
   return (
     <div className="flex">
       <Welcome />
@@ -68,13 +114,14 @@ const Signup = () => {
             source={Password}
           />
 
-          <div
-            className="font-medium"
-            onClick={handleCheck}
-          >
-            {isMatch ? (
+            {errors.length>0 &&
+            <div className="text-sm font text-red-700 text-center font-medium"><span>{errors}</span></div>
+            }
+
+          <div className="font-medium" onClick={handleSignUp}>
+            {isCorrect ? (
               <Link to="/signupotp">
-                <Buttons text="Send Confirmation Code " />
+                <Buttons text="Send Confirmation Code "  />
               </Link>
             ) : (
               <Buttons text="Send Confirmation Code" />

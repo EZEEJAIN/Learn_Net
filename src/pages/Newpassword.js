@@ -3,30 +3,70 @@ import Buttons from "../components/Buttons";
 import Buttons1 from "../components/Buttons1";
 import Rectangle from "../assests/Rectangle.png";
 import Password from "../assests/password.png";
+import Cookie from "cookie-universal";
 //import Msg from "../assests/msg.png";
 import { Link } from "react-router-dom";
 import Welcome from "../components/Welcome";
 import Heading from "../components/Heading";
 import Inputfields from "../components/Inputfields";
+import { base_url } from "../utils/base_url";
+import axios from "axios";
 
 const Newpassword = () => {
   const [newPass, setNewPass] = useState("");
   const [newCPass, setNewCPass] = useState("");
-  const [isMatch, setIsMatch] = useState(false);
-  //console.log(newPass, newCPass);
-  const handleCheck = () => {
+  const [isCorrect, setIsCorrect] = useState("");
+  const [errors, setErrors] = useState("");
+  const cookies = Cookie();
+  const PASSWORD = cookies.get("password");
+
+  console.log(cookies.get("password"));
+  const handleResetPassword = () => {
     if (newPass.length > 0 && newCPass.length > 0) {
-      if (newPass.length <= 10 && newCPass.length <= 10) {
+      if(newPass.length >= 8 && newCPass.length >= 8){
+      
+        
         if (newPass === newCPass) {
-          setIsMatch(true);
+          const requestBody = {
+            password: newPass,
+          };
+          axios
+            .post(`${base_url}/auth/user/reset/password`, requestBody, {
+              headers: {
+                Authorization: "Token " + cookies.get("token"),
+              },
+            })
+            .then(function (response) {
+              console.log("successful RESPONSE ", response.data);
+              if (response?.request?.status === 200) {
+                if(response?.data?.message.toString()==="You have Successfully Changed your password"){
+                  setIsCorrect(true)
+                  //setErrors(response?.data?.message)
+                }
+                else if(response?.data?.message)
+                {
+                  setIsCorrect(false)
+                  setErrors(response?.data?.message)
+                }
+                //console.log("java");
+              }
+            })
+            .catch(function (error) {
+              console.log("ERROR RESPONSE ", error);
+              if (error?.response?.data?.user) {
+                setErrors("Something went wrong");
+              }
+            });
         } else {
-          alert("Password is not same");
+          setErrors("Password and Confirm password is not same");
         }
-      } else {
-        alert("Length exceed");
       }
-    } else {
-      alert("Please fill the required field");
+        else{
+          setErrors("Ensure password and Confirm Password have at least 8 characters.")
+        }
+    }
+     else {
+      setErrors("Please fill the required field");
     }
   };
 
@@ -58,12 +98,13 @@ const Newpassword = () => {
             }}
             source={Password}
           />
-
-          <div
-            className="font-medium"
-            onClick={handleCheck}
-          >
-            {isMatch ? (
+           {errors.length > 0 && (
+            <div className="text-sm font text-red-700 text-center font-medium">
+              <span>{errors}</span>
+            </div>
+          )}
+          <div className="font-medium" onClick={handleResetPassword}>
+            {isCorrect ? (
               <Link to="/">
                 <Buttons text="Confirm " />
               </Link>
