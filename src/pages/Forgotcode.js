@@ -7,7 +7,7 @@ import Msg from "../assests/msg.png";
 import Cookie from 'cookie-universal'
 //import Dot from "../assests/dot.png";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Welcome from "../components/Welcome";
 import Heading from "../components/Heading";
 import Inputfields from "../components/Inputfields";
@@ -16,15 +16,14 @@ import { base_url } from "../utils/base_url";
 
 const Forgotcode = () => {
   const [code, setCode] = useState("");
-  const [isCorrect, setIsCorrect] = useState("");
   const [errors, setErrors] = useState("");
-
+  const navigate=useNavigate()
   const cookiesFPC = Cookie()
   const EMAIL = localStorage.getItem("email");
     const OTP = cookiesFPC.get("otp");
   //console.log(EMAIL)
   useEffect(() => {
-   
+    
     toast.success(`your OTP is:${OTP}`, {
       position: "top-right",
       autoClose: true,
@@ -36,7 +35,7 @@ const Forgotcode = () => {
       theme: "light",
     });
   }, []);
-  console.log()
+  
   const handleForgotPasswordCode = () => {
     setErrors("");
     if (code.length > 0) {
@@ -56,12 +55,12 @@ const Forgotcode = () => {
           console.log("successful Entered OTP ", response.data);
           if (response?.request?.status === 400)
           {
-            setIsCorrect(false)
+           navigate("/forgotcode")
            
           }
           else if(response?.request?.status === 200)
           {
-            setIsCorrect(true)
+            navigate("/newpass")
           }
         })
         .catch(function (error) {
@@ -99,13 +98,9 @@ const Forgotcode = () => {
             </div>
           )}
           <div className="font-medium" onClick={handleForgotPasswordCode}>
-            {isCorrect ? (
-              <Link to="/newpass">
-                <Buttons text="Create New Password" />
-              </Link>
-            ) : (
+            
               <Buttons text="Create New Password" />
-            )}
+            
           </div>
           <div className="flex justify-center items-center font-medium text-sm mb-4 ">
             <p className="text-[#000000]">

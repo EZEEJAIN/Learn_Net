@@ -28,7 +28,7 @@ function App() {
         <Route path="/loginsuccess" element={<Loginsuccess/>}/>
         </Routes>
       </BrowserRouter>
-      <ToastContainer />
+      <ToastContainer limit={1} />
     </div>
   );
 }

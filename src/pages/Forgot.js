@@ -4,7 +4,7 @@ import Buttons1 from "../components/Buttons1";
 import Rectangle from "../assests/Rectangle.png";
 import Msg from "../assests/msg.png";
 import Welcome from "../components/Welcome";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Cookie from 'cookie-universal'
 import Heading from "../components/Heading";
 import Inputfields from "../components/Inputfields";
@@ -14,6 +14,7 @@ const Forgot = () => {
   const [email, setEmail] = useState("");
   const [isCorrect, setIsCorrect] = useState("");
   const [errors, setErrors] = useState("");
+  const navigate=useNavigate()
   const cookies = Cookie()
   const handleForgotPassword = () => {
    // console.log(errors);
@@ -32,10 +33,10 @@ const Forgot = () => {
         .then(function (response) {
           console.log("successful Entered OTP ", response.data);
           if (response?.request?.status === 500) {
-            setIsCorrect(false);
+            navigate("/forgot")
             setErrors("You have not entered valid Email")
           } else if (response?.request?.status === 200) {
-            setIsCorrect(true);
+            navigate("/forgotcode")
             cookies.set('token',response?.data?.token)
             cookies.set('otp',response?.data?.otp)
             // cookies.set('email',email.toString())
@@ -73,13 +74,9 @@ const Forgot = () => {
             <div className="text-sm font text-red-700 text-center font-medium"><span>{errors}</span></div>
             }
           <div className="font-medium" onClick={handleForgotPassword}>
-            {isCorrect ? (
-              <Link to="/forgotcode">
-                <Buttons text="Send Confirmation Code " />
-              </Link>
-            ) : (
+           
               <Buttons text="Send Confirmation Code " />
-            )}
+           
           </div>
           <div className="flex justify-center items-center font-medium text-sm mb-4 ">
             <p className="text-[#000000]">

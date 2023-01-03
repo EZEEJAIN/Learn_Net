@@ -7,7 +7,7 @@ import Msg from "../assests/msg.png";
 import axios from "axios";
 //import Cookies from 'universal-cookie';
 //import Dot from "../assests/dot.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Welcome from "../components/Welcome";
 import Heading from "../components/Heading";
 import Inputfields from "../components/Inputfields";
@@ -16,9 +16,8 @@ import { base_url } from "../utils/base_url";
 const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isCorrect, setIsCorrect] = useState(false);
   const [errors, setErrors] = useState("");
-
+ const navigate=useNavigate()
 //const cookies=new Cookies()
 
 
@@ -43,9 +42,11 @@ const Signin = () => {
           response.data
         );
         if (response?.request?.status === 400) {
-          setIsCorrect(false);
+          
+          navigate("/")
         } else if (response?.request?.status === 200) {
-          setIsCorrect(true);
+          
+          navigate("/loginsuccess")
           //cookies.set("Token",response?.data?.user?.token)
 
         }
@@ -117,13 +118,8 @@ const Signin = () => {
           )}
 
           <div className=" font-medium " onClick={handleSignIn}>
-            {isCorrect ? (
-              <Link to="/loginsuccess">
-                <Buttons text="Login" />
-              </Link>
-            ) : (
-              <Buttons text="Login" />
-            )}
+          <Buttons text="Login" />
+           
           </div>
 
           <div className="flex justify-center items-center font-medium text-sm mb-4 ">

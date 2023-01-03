@@ -5,7 +5,7 @@ import Rectangle from "../assests/Rectangle.png";
 import Password from "../assests/password.png";
 import Cookie from "cookie-universal";
 //import Msg from "../assests/msg.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Welcome from "../components/Welcome";
 import Heading from "../components/Heading";
 import Inputfields from "../components/Inputfields";
@@ -15,12 +15,12 @@ import axios from "axios";
 const Newpassword = () => {
   const [newPass, setNewPass] = useState("");
   const [newCPass, setNewCPass] = useState("");
-  const [isCorrect, setIsCorrect] = useState("");
+  const navigate=useNavigate()
   const [errors, setErrors] = useState("");
   const cookies = Cookie();
   //const PASSWORD = cookies.get("password");
 
-  console.log(cookies.get("password"));
+  //console.log(cookies.get("password"));
   const handleResetPassword = () => {
     if (newPass.length > 0 && newCPass.length > 0) {
       if(newPass.length >= 8 && newCPass.length >= 8){
@@ -40,12 +40,12 @@ const Newpassword = () => {
               console.log("successful RESPONSE ", response.data);
               if (response?.request?.status === 200) {
                 if(response?.data?.message.toString()==="You have Successfully Changed your password"){
-                  setIsCorrect(true)
+                  navigate("/")
                   //setErrors(response?.data?.message)
                 }
                 else if(response?.data?.message)
                 {
-                  setIsCorrect(false)
+                 navigate("/newpass")
                   setErrors(response?.data?.message)
                 }
                 //console.log("java");
@@ -104,13 +104,9 @@ const Newpassword = () => {
             </div>
           )}
           <div className="font-medium" onClick={handleResetPassword}>
-            {isCorrect ? (
-              <Link to="/">
-                <Buttons text="Confirm " />
-              </Link>
-            ) : (
+            
               <Buttons text="Confirm" />
-            )}
+            
           </div>
           <div className="flex justify-center items-center font-medium text-sm mb-4 ">
             <p className="text-[#000000]">

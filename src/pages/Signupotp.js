@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Buttons from "../components/Buttons";
 import Buttons1 from "../components/Buttons1";
 import Rectangle from "../assests/Rectangle.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Msg from "../assests/msg.png";
 import Welcome from "../components/Welcome";
 import Heading from "../components/Heading";
@@ -15,6 +15,7 @@ const Signupotp = () => {
   const cookies = Cookie();
   const OTP = cookies.get("otp");
   useEffect(() => {
+   
     toast.success(`your OTP is:${OTP}`, {
       position: "top-right",
       autoClose: false,
@@ -27,8 +28,8 @@ const Signupotp = () => {
     });
   }, []);
   const [code, setCode] = useState("");
-  const [isCorrect, setIsCorrect] = useState(false);
   const [errors, setErrors] = useState("");
+  const navigate=useNavigate()
 //console.log(errors)
   const handleSignupCode = () => {
     setErrors("");
@@ -46,12 +47,12 @@ const Signupotp = () => {
           console.log("successful Entered OTP ", response.data);
           if (response?.request?.status === 200) {
             if(response?.data?.message.toString()==="Successfully verified your email"){
-              setIsCorrect(true)
+              navigate("/")
               //setErrors(response?.data?.message)
             }
             else if(response?.data?.message.toString()==="Verification code does not match")
             {
-              setIsCorrect(false)
+              navigate("/signupotp")
               setErrors(response?.data?.message)
             }
             //console.log("java");
@@ -91,13 +92,9 @@ const Signupotp = () => {
           )}
 
           <div className="font-medium" onClick={handleSignupCode}>
-            {isCorrect ? (
-              <Link to="/">
-                <Buttons text="Sign up" />
-              </Link>
-            ) : (
+            
               <Buttons text="Sign up" />
-            )}
+            
           </div>
           <div className="flex justify-center items-center font-medium text-sm mb-4 ">
             <p className="text-[#000000]">

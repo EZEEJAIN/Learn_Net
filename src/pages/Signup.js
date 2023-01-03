@@ -6,7 +6,7 @@ import Password from "../assests/password.png";
 import Msg from "../assests/msg.png";
 import Cookie from 'cookie-universal'
 //import Dot from "../assests/dot.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Welcome from "../components/Welcome";
 import Heading from "../components/Heading";
 import Inputfields from "../components/Inputfields";
@@ -17,9 +17,8 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCPassword] = useState("");
-  // console.log(email, password, cpassword);'
-  const [isCorrect, setIsCorrect] = useState(false);
   const [errors, setErrors] = useState("");
+  const navigate=useNavigate()
   const cookies = Cookie()
 
   const handleSignUp = () => {
@@ -38,12 +37,12 @@ const Signup = () => {
           .then(function (response) {
             console.log("successful RESPONSE ", response.data);
             if (response?.request?.status === 400) {
-              setIsCorrect(false);
+             navigate("/signup")
             } else if (response?.request?.status === 200) {
-              setIsCorrect(true);
+              navigate("/signupotp")
               cookies.set('token',response?.data?.token)
               cookies.set('otp',response?.data?.otp)
-              cookies.set('password',password)
+              //cookies.set('password',password)
             }
           })
           .catch(function (error) {
@@ -119,13 +118,9 @@ const Signup = () => {
             }
 
           <div className="font-medium" onClick={handleSignUp}>
-            {isCorrect ? (
-              <Link to="/signupotp">
-                <Buttons text="Send Confirmation Code "  />
-              </Link>
-            ) : (
+            
               <Buttons text="Send Confirmation Code" />
-            )}
+          
           </div>
           <div className="flex justify-center items-center font-medium text-sm mb-4 ">
             <p className="text-[#000000]">
