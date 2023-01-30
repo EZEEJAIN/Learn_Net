@@ -24,54 +24,71 @@ const Signin = () => {
   //console.log(email,password);
   const handleSignIn = () => {
     setErrors("");
+  
     const requestBody = {
       email: email,
       password: password,
     };
-    
-    axios
-      .post(`${base_url}/auth/user/login`, requestBody, {
-        headers: {
-          // Authorization: "Token " + cookies.get("token"),
-        },
-      })
-
-      .then(function (response) {
-        console.log(
-          "successful RESPONSE ",
-          response.data
-        );
-        if (response?.request?.status === 400) {
-          
-          navigate("/")
-        } else if (response?.request?.status === 200) {
-          
-          navigate("/loginsuccess")
-          //cookies.set("Token",response?.data?.user?.token)
-
-        }
-        //console.log(response);
-        //console.log("Token",response?.data?.user?.token)
-      })
-      .catch(function (error) {
-        console.log("ERROR from Catch", error);
+    axios.post(`${base_url}/auth/check-email-verification`, {email:requestBody.email},{
+      headers: {
+        // Authorization: "Token " + cookies.get("token"),
+      },
+    })
+    .then(function (response) {
+      console.log("jaadu",response)
+      if(response?.data===true){
+        axios
+        .post(`${base_url}/auth/user/login`, requestBody, {
+          headers: {
+            // Authorization: "Token " + cookies.get("token"),
+          },
+        })
   
-        if ( error?.response?.data?.errors?.email || error?.response?.data?.errors?.password ) 
-        {
-           if (email.length === 0 && password.length === 0) {
-            setErrors("Both the fields are empty");
+        .then(function (response) {
+          console.log(
+            "successful RESPONSE ",
+            response.data
+          );
+          if (response?.request?.status === 400) {
+            
+            navigate("/")
+          } else if (response?.request?.status === 200) {
+            
+            navigate("/loginsuccess")
+            //cookies.set("Token",response?.data?.user?.token)
+  
           }
-          else if (email.length === 0) {
-            setErrors("Email Field cannot not be blank");
-           
-          } else if (password.length === 0) {
-            setErrors("Password Field cannot not be blank");
-          }
-        } 
-        
-        else if (error?.response?.data?.errors?.error) 
-        setErrors("A user with this email and password was not found.");
-      });
+          //console.log(response);
+          //console.log("Token",response?.data?.user?.token)
+        })
+        .catch(function (error) {
+          console.log("ERROR from Catch", error);
+    
+          if ( error?.response?.data?.errors?.email || error?.response?.data?.errors?.password ) 
+          {
+             if (email.length === 0 && password.length === 0) {
+              setErrors("Both the fields are empty");
+            }
+            else if (email.length === 0) {
+              setErrors("Email Field cannot not be blank");
+             
+            } else if (password.length === 0) {
+              setErrors("Password Field cannot not be blank");
+            }
+          } 
+          
+          else if (error?.response?.data?.errors?.error) 
+          setErrors("A user with this email and password was not found.");
+        });
+      }
+      else {
+        navigate("/signupotp")
+      }
+    })
+    .catch(function (error) {
+      console.log("error",error)
+    })
+    
   };
   
 

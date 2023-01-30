@@ -10,6 +10,7 @@ import Loginsuccess from "./pages/Loginsuccess";
 import { ToastContainer } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 import Coursedesabout from "./components/Coursedesabout";
+import HomePage from "./pages/HomePage";
 //import Common1 from "./components/Common1";
 
 function App() {
@@ -19,13 +20,14 @@ function App() {
       <BrowserRouter>
       
         <Routes>
-        <Route path="/" element={<Signin/>}/>
+        <Route path="/" element={<HomePage/>}/>
+        {/* <Route path="/" element={<Signin/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/signupotp" element={<Signupotp/>}/>
         <Route path="/forgotcode" element={<Forgotcode/>}/>
         <Route path="/forgot" element={<Forgot/>}/>
         <Route path="/newpass" element={<Newpassword/>}/>
-        <Route path="/loginsuccess" element={<Loginsuccess/>}/>
+        <Route path="/loginsuccess" element={<Loginsuccess/>}/> */}
         </Routes>
       </BrowserRouter>
       <ToastContainer limit={1} />
