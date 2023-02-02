@@ -29,7 +29,7 @@ const Signin = () => {
       email: email,
       password: password,
     };
-    axios.post(`${base_url}/auth/check-email-verification`, {email:requestBody.email},{
+    axios.post(`${process.env.REACT_APP_SERVER_URL || base_url}/auth/check-email-verification`, {email:requestBody.email},{
       headers: {
         // Authorization: "Token " + cookies.get("token"),
       },
@@ -38,7 +38,7 @@ const Signin = () => {
       console.log("jaadu",response)
       if(response?.data===true){
         axios
-        .post(`${base_url}/auth/user/login`, requestBody, {
+        .post(`${process.env.REACT_APP_SERVER_URL || base_url}/auth/user/login`, requestBody, {
           headers: {
             // Authorization: "Token " + cookies.get("token"),
           },

@@ -31,7 +31,7 @@ const Signup = () => {
         };
 
         axios
-          .post(`${base_url}/auth/user/register`, requestBody, {
+          .post(`${process.env.REACT_APP_SERVER_URL || base_url}/auth/user/register`, requestBody, {
             headers: {},
           })
           .then(function (response) {

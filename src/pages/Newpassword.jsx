@@ -31,7 +31,7 @@ const Newpassword = () => {
             password: newPass,
           };
           axios
-            .post(`${base_url}/auth/user/reset/password`, requestBody, {
+            .post(`${process.env.REACT_APP_SERVER_URL || base_url}/auth/user/reset/password`, requestBody, {
               headers: {
                 Authorization: "Token " + cookies.get("token"),
               },

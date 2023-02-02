@@ -46,7 +46,7 @@ const Forgotcode = () => {
 
       };
       axios
-        .post(`${base_url}/auth/user/forgot/password/verify`, requestBody, {
+        .post(`${process.env.REACT_APP_SERVER_URL || base_url}/auth/user/forgot/password/verify`, requestBody, {
           headers: {
             Authorization: "Token " + cookiesFPC.get("token"),
           },

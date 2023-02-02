@@ -30,7 +30,7 @@ const Signupotp = () => {
   const [code, setCode] = useState("");
   const [errors, setErrors] = useState("");
   const navigate=useNavigate()
-//console.log(errors)
+// console.log(OTP)
   const handleSignupCode = () => {
     setErrors("");
     if (code.length > 0) {
@@ -38,7 +38,7 @@ const Signupotp = () => {
         otp: code,
       };
       axios
-        .post(`${base_url}/auth/user/email/verification`, requestBody, {
+        .post(`${process.env.REACT_APP_SERVER_URL || base_url}/auth/user/email/verification`, requestBody, {
           headers: {
             Authorization: "Token " + cookies.get("token"),
           },
