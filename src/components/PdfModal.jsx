@@ -31,9 +31,9 @@ export default function BasicModal({open,handleClose,handleOpen}) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+       <div className='flex justify-center items-center md:mt-32 lg:mt-52 xl:mt-56'>
         <DownloadCardPopup/>
-        </Box>
+        </div>
       </Modal>
     </div>
   );

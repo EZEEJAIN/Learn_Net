@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,10 +6,13 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 const Dropdown = () => {
-    const [quiz, setQuiz] = React.useState('');
+    const [quizNumber, setQuizNumber] = React.useState(1);
 
+    useEffect(()=>{
+localStorage.setItem("QuizNumber",quizNumber)
+    },[quizNumber])
     const handleChange = (event) => {
-      setQuiz(event.target.value);
+      setQuizNumber(event.target.value);
     };
   return (
     <div>
@@ -19,7 +22,7 @@ const Dropdown = () => {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={quiz}
+          value={quizNumber}
           label="Quiz"
           onChange={handleChange}
         >
@@ -29,6 +32,7 @@ const Dropdown = () => {
           <MenuItem value={4}>4</MenuItem>
           <MenuItem value={5}>5</MenuItem>
           <MenuItem value={6}>6</MenuItem>
+          <MenuItem value={7}>7</MenuItem>
         </Select>
       </FormControl>
     </Box>

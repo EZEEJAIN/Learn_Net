@@ -17,6 +17,7 @@ import ClassStart1 from "./pages/ClassStart1";
 import ClassStart2 from "./pages/ClassStart2";
 import ClassStart3 from "./pages/ClassStart3";
 import Quiz from "./pages/Quiz";
+import DemoPage from "./pages/DemoPage";
 //import Common1 from "./components/Common1";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       <BrowserRouter>
       
         <Routes>
+          {/* <Route path="/" element={<DemoPage/>}/> */}
                  <Route path="/" element={<HomePage/>}/>
           <Route path="/classstart2" element={<ClassStart2/>}/>
           <Route path="/classstart3" element={<ClassStart3/>}/>

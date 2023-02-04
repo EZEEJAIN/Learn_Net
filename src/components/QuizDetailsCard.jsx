@@ -2,7 +2,7 @@ import React from "react";
 
 const QuizDetailsCard = () => {
   return (
-    <div className="box-content w-[500px] h-[300px] border-2 shadow-2xl rounded-3xl bg-transparent">
+    <div className="box-content lg:w-[500px] md:w-[550px] w-[300px]  md:h-[300px] h-[350px] border-2 shadow-2xl rounded-3xl bg-transparent">
       <div className="flex-col space-y-4 mx-10 my-5 ">
         <p className="text-2xl font-semibold text-black">Dont miss the chance to test your skill and leaning!</p>
        
@@ -21,7 +21,7 @@ const QuizDetailsCard = () => {
         <p>80% to pass</p>
         </div>
 
-        <div className="box-content rounded-full w-[90px] mx-40 drop-shadow-2xl px-7 py-3 bg-[#FE7524] shadow-md shadow-orange-300">
+        <div className="box-content rounded-full w-[90px] md:mx-40 mx-10 drop-shadow-2xl px-7 py-3 bg-[#FE7524] shadow-md shadow-orange-300">
           <button className="text-white font-bold shadow-md shadow-[#FE7524] drop-shadow-2xl">
             {" "}
             Start NOW

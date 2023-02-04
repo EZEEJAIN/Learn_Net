@@ -1,0 +1,38 @@
+[
+    {
+        "id":1,
+        "questionTitle":"1Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+        "option":["Bob’s Burgers","Stranger Things","Naruto","Seven deadly sins"]
+    },
+    {
+        "id":2,
+        "questionTitle":"2Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+        "option":["Bob’s Burgers","Stranger Things","Naruto","Seven deadly sins"]
+    },
+    {
+        "id":3,
+        "questionTitle":"3Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+        "option":["Bob’s Burgers","Stranger Things","Naruto","Seven deadly sins"]
+    },
+    {
+        "id":4,
+        "questionTitle":"4Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+        "option":["Bob’s Burgers","Stranger Things","Naruto","Seven deadly sins"]
+    },
+    {
+        "id":5,
+        "questionTitle":"5Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+        "option":["Bob’s Burgers","Stranger Things","Naruto","Seven deadly sins"]
+    },
+    {
+        "id":6,
+        "questionTitle":"6Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+        "option":["Bob’s Burgers","Stranger Things","Naruto","Seven deadly sins"]
+    },
+    {
+        "id":7,
+        "questionTitle":"7Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+        "option":["Bob’s Burgers","Stranger Things","Naruto","Seven deadly sins"]
+    }
+
+]

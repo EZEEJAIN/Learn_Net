@@ -3,7 +3,7 @@ import { AiFillStar } from "react-icons/ai";
 import { BsStarHalf } from "react-icons/bs";
 const RatingCards = ({img,title,description,ratings,review,starcount}) => {
   return (
-    <div className="xl:mx-20 lg:mx-5 md:mx-20 mx-3 my-10 box-content w-[300px] rounded-3xl h-[390px] shadow-slate-400 shadow-lg hover:scale-110 duration-300 cursor-pointer border-gray-200">
+    <div className="xl:mx-20 lg:mx-5 md:mx-20 mx-3 my-10 box-content md:w-[300px] w-[270px] rounded-3xl h-[390px] shadow-slate-400 shadow-lg hover:scale-110 duration-300 cursor-pointer border-gray-200">
       <div className="flex-col space-y-7 ">
         <div>
           <img src={img} alt="card" />
